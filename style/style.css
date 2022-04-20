@@ -1,0 +1,105 @@
+:root {
+    --bg: #FDA;
+    --bx: #FC8;
+    --fg: #FA5;
+    --bt: #852;
+    --cl: #FFF;
+}
+
+html, body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--bg);
+}
+p, h1, h2, h3, h4, h5, h6, ul, ol, li, dl, dt, dd, form, fieldset, legend, input, textarea, blockquote, th, td {
+    margin: 0;
+    padding: 0;
+}
+* {
+    box-sizing: border-box;
+}
+
+p, h1 {
+    margin: 0 1rem .5rem 1rem;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - 9rem);
+    margin: 1rem;
+    padding: 1rem;
+    gap: 1rem;
+    border-radius: .5rem;
+    background: var(--bx);
+}
+
+fieldset {
+    display: flex;
+    width: 100%; height: fit-content;
+    padding: 1rem;
+    gap: 1rem;
+    border: none;
+    border-radius: .25rem;
+    background: var(--fg);
+}
+
+.button {
+    display: block;
+    width: fit-content;
+    margin: 0;
+    padding: .5rem 1rem;
+    border: none;
+    border-radius: .25rem;
+    background: var(--bt);
+    color: var(--cl);
+    font: inherit;
+}
+.button:active {
+    background: #BBB;
+    border: 1px inset #BBB;
+}
+.button:focus {
+    outline: 1px solid #000;
+}
+
+.json-fields-zone {
+    gap: 0;
+    flex-direction: column;
+}
+.json-fields {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.jsfield {
+    align-items: center;
+    height: fit-content;
+    padding: .5rem 1rem;
+    border-radius: .25rem;
+    background: #A213;
+    color: #000;
+    text-shadow: none;
+}
+.jsfield__key {
+    margin: 0 .25rem .25rem 0;
+    font-size: 1rem;
+}
+.jsfield__content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: .5rem;
+    width: fit-content;
+    margin-left: auto;
+    font-size: .75rem;
+}
+.jsfield--selected {
+    box-shadow: #510 0 0 0 1px inset;
+}
+.jsfield--used {
+    background: #510;
+    color: #F62;
+}

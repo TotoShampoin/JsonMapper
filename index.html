@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Mapper</title>
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+    <header>
+        <h1>JSON Mapper</h1>
+    </header>
+    <main>
+        <fieldset class="json-fields-zone">
+            <h2>Fields</h2>
+            <div class="json-fields" id="json-fields"></div>
+        </fieldset>
+        <fieldset class="buttons-zone">
+            <label for="json-file" class="button" tabindex="0">Import</label>
+            <button type="button" class="button">Export</button>
+        </fieldset>
+    </main>
+    <footer>
+        <p>TotoShampoin</p>
+        <p>Urbanature</p>
+    </footer>
+    <div> <!-- hidden inputs -->
+        <input type="file" id="json-file" accept=".json" hidden>
+    </div>
+    <script src="./includes/jquery.slim.min.js"></script>
+    <script src="./src/main.js" type="module"></script>
+</body>
+</html>
