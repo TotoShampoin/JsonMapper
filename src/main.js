@@ -9,6 +9,11 @@ handlers.onKeyApply = (path, key) => {
     jsm.addMap(path, key);
     updateMap(jsm.getMap_HTML());
 }
+handlers.onKeyReset = () => {
+    if(!jsm) return;
+    jsm.resetMap();
+    updateMap(jsm.getMap_HTML());
+}
 handlers.onMapClick = (key) => {
     if(!jsm) return;
     jsm.removeMap(key);

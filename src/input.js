@@ -1,5 +1,6 @@
 export const handlers = {
     onKeyApply: (path, key) => {},
+    onKeyReset: () => {},
     onFieldClick: (path) => {},
     onMapClick: (key) => {},
     onImport: (e) => {},
@@ -11,6 +12,7 @@ const $fields = $("#json-fields");
 const $map = $("#map-zone");
 const $new_key = $("#new-key");
 const $key_apply = $("#json-new-key");
+const $key_reset = $("#key-reset");
 const $import = $("#import");
 const $export = $("#export");
 const $preview = $("#preview");
@@ -58,6 +60,7 @@ export const init = () => {
         handlers.onFieldClick($(this).data("path"));
         $fields.find(".jsfield").removeClass("jsfield--selected");
         $(this).addClass("jsfield--selected");
+        $new_key.trigger("focus");
     });
     
     $key_apply.on('submit', function(event) {
@@ -78,6 +81,11 @@ export const init = () => {
             $new_key.val("");
             $selected.removeClass("jsfield--selected");
         }
+    });
+
+    $key_reset.on('click', function(event) {
+        event.preventDefault();
+        handlers.onKeyReset();
     });
 }
 

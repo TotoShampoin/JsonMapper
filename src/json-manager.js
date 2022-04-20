@@ -77,6 +77,9 @@ class JSonManager {
     removeMap(output_key) {
         this.map = this.map.filter(map => map.output_key !== output_key);
     }
+    resetMap() {
+        this.map = [];
+    }
     getMap_HTML() {
         const html = this.map.map(map => `
             <div class="jsmap" data-path="${map.input_path}" data-key="${map.output_key}">
