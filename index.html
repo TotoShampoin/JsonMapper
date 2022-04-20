@@ -14,10 +14,20 @@
         <fieldset class="json-fields-zone">
             <h2>Fields</h2>
             <div class="json-fields" id="json-fields"></div>
+            <h2>New key</h2>
+            <form class="json-new-key" id="json-new-key">
+                <input type="text" class="new-key" id="new-key" placeholder="Key" autocomplete="off">
+                <button type="submit" class="button" id="key-apply">Apply</button>
+            </form>
+        </fieldset>
+        <fieldset class="map">
+            <h2>Map</h2>
+            <div class="map-zone" id="map-zone"></div>
         </fieldset>
         <fieldset class="buttons-zone">
-            <label for="json-file" class="button" tabindex="0">Import</label>
-            <button type="button" class="button">Export</button>
+            <label for="import" class="button" tabindex="0">Import</label>
+            <button type="button" class="button" id="export">Export</button>
+            <input type="text" name="file-name" id="file-name" placeholder="File name" autocomplete="off">
         </fieldset>
     </main>
     <footer>
@@ -25,7 +35,7 @@
         <p>Urbanature</p>
     </footer>
     <div> <!-- hidden inputs -->
-        <input type="file" id="json-file" accept=".json" hidden>
+        <input type="file" id="import" accept=".json" hidden>
     </div>
     <script src="./includes/jquery.slim.min.js"></script>
     <script src="./src/main.js" type="module"></script>

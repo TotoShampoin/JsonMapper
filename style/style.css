@@ -2,7 +2,8 @@
     --bg: #FDA;
     --bx: #FC8;
     --fg: #FA5;
-    --bt: #852;
+    --bt: #A51;
+    --bt2: #840;
     --cl: #FFF;
 }
 
@@ -44,6 +45,21 @@ fieldset {
     background: var(--fg);
 }
 
+input[type=text] {
+    padding: .5rem 1rem;
+    font: inherit;
+    border: none;
+    border-radius: .25rem;
+    background: #5215;
+    color: #FFF;
+}
+input[type=text]::placeholder {
+    color: #FDA;
+}
+input[type=text]:focus {
+    outline: none;
+}
+
 .button {
     display: block;
     width: fit-content;
@@ -56,8 +72,7 @@ fieldset {
     font: inherit;
 }
 .button:active {
-    background: #BBB;
-    border: 1px inset #BBB;
+    background: var(--bt2);
 }
 .button:focus {
     outline: 1px solid #000;
@@ -73,8 +88,7 @@ fieldset {
     align-items: center;
 }
 
-.jsfield {
-    align-items: center;
+.jsfield, .jsmap {
     height: fit-content;
     padding: .5rem 1rem;
     border-radius: .25rem;
@@ -82,14 +96,13 @@ fieldset {
     color: #000;
     text-shadow: none;
 }
-.jsfield__key {
+.jsfield__key, .jsmap__output {
     margin: 0 .25rem .25rem 0;
     font-size: 1rem;
 }
 .jsfield__content {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
     align-items: center;
     gap: .5rem;
     width: fit-content;
@@ -99,7 +112,42 @@ fieldset {
 .jsfield--selected {
     box-shadow: #510 0 0 0 1px inset;
 }
-.jsfield--used {
+.jsfield[data-key] {
     background: #510;
     color: #F62;
+}
+
+.map {
+    flex-direction: column;
+}
+.map-zone {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.jsmap {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+}
+.jsmap__input {
+    font-family: 'Courier New', Courier, monospace;
+}
+.jsmap__output {
+    margin: 0;
+    padding: .5rem 1rem;
+    border-radius: .25rem;
+    background: #A213;
+}
+
+.json-new-key {
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+    padding: 1rem;
+}
+
+.new-key {
+    width: 100%;
 }

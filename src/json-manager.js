@@ -29,7 +29,7 @@ const getJSONfields = (json) => {
             content: typeof element === 'object' ? getJSONfields(element) : typeof element,
         }));
     }
-    if(typeof json === 'object') {
+    if(typeof json === 'object' && json !== null) {
         return Object.keys(json).map(key => ({
             key,
             count: 1,
@@ -40,12 +40,11 @@ const getJSONfields = (json) => {
 }
 
 const getJSONfields_HTML = (fields, parent = "") => {
-    console.log(fields);
     const html = fields.map(field => `
         <div class="jsfield" data-path="${parent}${field.key}">
             ${field.key && `<div class="jsfield__key">${field.key}</div>`}
             <div class="jsfield__content">${
-            typeof field.content === 'object'
+            (typeof field.content === 'object' && field.content !== null)
                 ? getJSONfields_HTML(field.content, `${parent}${field.key}.`)
                 : field.content
             }</div>
@@ -77,6 +76,15 @@ class JSonManager {
     }
     removeMap(output_key) {
         this.map = this.map.filter(map => map.output_key !== output_key);
+    }
+    getMap_HTML() {
+        const html = this.map.map(map => `
+            <div class="jsmap" data-path="${map.input_path}" data-key="${map.output_key}">
+            <div class="jsmap__output">${map.output_key}</div> ⇐
+                <div class="jsmap__input">${map.input_path}</div>
+            </div>
+        `).join('');
+        return html;
     }
     parseMap() {
         this.output = this.input.map(element => this.map.reduce((output, map) => {
