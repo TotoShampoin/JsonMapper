@@ -1,8 +1,6 @@
 import JSonManager from './json-manager.js';
 import {init, handlers, updateMap, updateFields} from "./input.js";
 
-const test = await (await fetch('./data/arbresremarquablesparis.json')).json();
-
 let jsm;
 
 handlers.onKeyApply = (path, key) => {

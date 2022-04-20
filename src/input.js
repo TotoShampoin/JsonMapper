@@ -56,12 +56,14 @@ export const init = () => {
     $key_apply.on('submit', function(event) {
         event.preventDefault();
         $new_key.val($new_key.val().trim());
-        if($new_key.val() === "") return;
+        const $selected = $(".jsfield--selected");
+        if($new_key.val() === "") {
+            $new_key.val($selected.children(".jsfield__key").text());
+        }
         if($map.find(`[data-key="${$new_key.val()}"]`).length) {
             $new_key.val("");
             return;
         }
-        const $selected = $(".jsfield--selected");
         if($selected[0]) {
             const path = $selected.data("path");
             const key = $new_key.val();

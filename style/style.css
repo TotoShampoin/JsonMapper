@@ -46,6 +46,7 @@ fieldset {
 }
 
 input[type=text] {
+    width: 24rem;
     padding: .5rem 1rem;
     font: inherit;
     border: none;
@@ -146,8 +147,4 @@ input[type=text]:focus {
     gap: 1rem;
     width: 100%;
     padding: 1rem;
-}
-
-.new-key {
-    width: 100%;
 }
