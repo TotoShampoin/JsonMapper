@@ -1,13 +1,16 @@
 import JSonManager from './json-manager.js';
 import {init, handlers, updateMap, updateFields} from "./input.js";
+import {preview_input, preview_output} from "./preview.js";
 
 let jsm;
 
 handlers.onKeyApply = (path, key) => {
+    if(!jsm) return;
     jsm.addMap(path, key);
     updateMap(jsm.getMap_HTML());
 }
 handlers.onMapClick = (key) => {
+    if(!jsm) return;
     jsm.removeMap(key);
     updateMap(jsm.getMap_HTML());
 }
@@ -18,6 +21,7 @@ handlers.onImport = (json) => {
     init();
 }
 handlers.onExport = () => {
+    if(!jsm) return;
     jsm.parseMap();
     const blob = new Blob([jsm.export()], {type: "application/json"});
     const url = URL.createObjectURL(blob);
@@ -28,5 +32,11 @@ handlers.onExport = () => {
     a.click();
     document.body.removeChild(a);
 };
+handlers.onPreview = () => {
+    if(!jsm) return;
+    jsm.parseMap();
+    preview_input(jsm.input);
+    preview_output(jsm.output);
+}
 
 window.JSonManager = JSonManager;

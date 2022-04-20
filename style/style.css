@@ -148,3 +148,19 @@ input[type=text]:focus {
     width: 100%;
     padding: 1rem;
 }
+
+.preview {
+    display: flex;
+    gap: 1rem;
+}
+.preview fieldset {
+    display: block;
+}
+.preview pre {
+    width: 100%;
+    padding: .5rem;
+    border-radius: .25rem;
+    border: .125rem solid #753;
+    background: #210;
+    color: #EDC;
+}

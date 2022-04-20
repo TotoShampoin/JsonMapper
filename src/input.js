@@ -4,6 +4,7 @@ export const handlers = {
     onMapClick: (key) => {},
     onImport: (e) => {},
     onExport: (e) => {},
+    onPreview: (e) => {},
 }
 
 const $fields = $("#json-fields");
@@ -12,6 +13,7 @@ const $new_key = $("#new-key");
 const $key_apply = $("#json-new-key");
 const $import = $("#import");
 const $export = $("#export");
+const $preview = $("#preview");
 
 /* listens drag over $import */
 $(`label[for="import"]`).on('dragover', function(event) {
@@ -43,6 +45,11 @@ $import.on('change', function(event) {
 $export.on('click', function(event) {
     event.preventDefault();
     handlers.onExport();
+});
+
+$preview.on('click', function(event) {
+    event.preventDefault();
+    handlers.onPreview();
 });
 
 export const init = () => {

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JSON Mapper</title>
+    <link rel="stylesheet" href="./includes/highlight/styles/json">
     <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
@@ -12,23 +13,34 @@
     </header>
     <main>
         <fieldset class="json-fields-zone">
-            <h2>Fields</h2>
+            <h3>Fields</h3>
             <div class="json-fields" id="json-fields"></div>
-            <h2>New key</h2>
+            <h3>New key</h3>
             <form class="json-new-key" id="json-new-key">
                 <input type="text" class="new-key" id="new-key" placeholder="Key" autocomplete="off">
                 <button type="submit" class="button" id="key-apply">Apply</button>
             </form>
         </fieldset>
         <fieldset class="map">
-            <h2>Map</h2>
+            <h3>Map</h3>
             <div class="map-zone" id="map-zone"></div>
         </fieldset>
         <fieldset class="buttons-zone">
             <label for="import" class="button" tabindex="0">Import</label>
-            <button type="button" class="button" id="export">Export</button>
             <input type="text" name="file-name" id="file-name" placeholder="File name" autocomplete="off">
+            <button type="button" class="button" id="export">Export</button>
+            <button type="button" class="button" id="preview">Preview</button>
         </fieldset>
+        <div class="preview">
+            <fieldset>
+                <h3>Preview Input</h3>
+                <pre id="preview-input"></pre>
+            </fieldset>
+            <fieldset>
+                <h3>Output</h3>
+                <pre id="preview-output"></pre>
+            </fieldset>
+        </div>
     </main>
     <footer>
         <p>TotoShampoin</p>
@@ -38,6 +50,7 @@
         <input type="file" id="import" accept=".json" hidden>
     </div>
     <script src="./includes/jquery.slim.min.js"></script>
+    <script src="./includes/highlight/highlight.min.js"></script>
     <script src="./src/main.js" type="module"></script>
 </body>
 </html>
