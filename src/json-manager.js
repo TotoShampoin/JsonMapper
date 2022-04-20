@@ -1,4 +1,12 @@
+const isGeoJSON = (json) => {
+    if(!json) return false;
+    if(!json.type) return false;
+    if(!json.coordinates) return false;
+    return true;
+}
+
 const getJSONfields = (json) => {
+    if(json === null) return null;
     if(Array.isArray(json) && json[0] && typeof json[0] === 'object') {
         /**
          * @type {{key: string, count: number, content: any, everywhere: boolean}}
@@ -11,7 +19,9 @@ const getJSONfields = (json) => {
                     fields.push({
                         key: key,
                         count: 1,
-                        content: typeof element[key] === 'object' ? getJSONfields(element[key]) : typeof element[key],
+                        content: typeof element[key] === 'object' ? (
+                            isGeoJSON(element[key]) ? `geojson (${element[key].type})` : getJSONfields(element[key])
+                        ) : typeof element[key],
                     });
                 } else {
                     field.count++;
@@ -26,14 +36,18 @@ const getJSONfields = (json) => {
         return json.map(element => ({
             key: '',
             count: 1,
-            content: typeof element === 'object' ? getJSONfields(element) : typeof element,
+            content: typeof element === 'object' ? (
+                isGeoJSON(element) ? `geojson (${element.type})` : getJSONfields(element)
+            ) : typeof element,
         }));
     }
-    if(typeof json === 'object' && json !== null) {
+    if(typeof json === 'object') {
         return Object.keys(json).map(key => ({
             key,
             count: 1,
-            content: typeof json[key] === 'object' ? getJSONfields(json[key]) : typeof json[key],
+            content: typeof json[key] === 'object' ? (
+                isGeoJSON(json[key]) ? `geojson (${json[key].type})` : getJSONfields(json[key])
+            ) : typeof json[key],
         }));
     }
     return null;
