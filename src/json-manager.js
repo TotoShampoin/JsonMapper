@@ -104,19 +104,50 @@ class JSonManager {
         return html;
     }
     parseMap() {
-        this.output = this.input.map(element => this.map.reduce((output, map) => {
-            const input_path = map.input_path.split('.');
-            const output_key = map.output_key;
-            let current = element;
-            input_path.forEach(path => {
-                current = current[path];
-            });
-            output[output_key] = current;
-            return output;
-        }, {}));
+        if(Array.isArray(this.input)) {
+            this.output = this.input.map(element => this.map.reduce((output, map) => {
+                const input_path = map.input_path.split('.');
+                const output_key = map.output_key.split('.');
+                let current = element;
+                input_path.forEach(path => {
+                    current = current[path];
+                });
+                if(output_key.length === 1) {
+                    output[output_key[0]] = current;
+                } else {
+                    let current_output = output;
+                    output_key.forEach((key, index) => {
+                        if(index === output_key.length - 1) {
+                            current_output[key] = current;
+                        } else {
+                            current_output = current_output[key] = {...current_output[key]};
+                        }
+                    });
+                }
+                return output;
+            }, {}));
+        } else {
+            /* {} */
+            this.output = this.map.reduce((output, map) => {
+                const input_path = map.input_path.split('.');
+                const output_key = map.output_key;
+                let current = this.input;
+                input_path.forEach(path => {
+                    current = current[path];
+                });
+                output[output_key] = current;
+                return output;
+            }, {});
+        }
     }
     export() {
         return JSON.stringify(this.output);
+    }
+    exportMap() {
+        return JSON.stringify(this.map);
+    }
+    importMap(map_json) {
+        this.map = map_json;
     }
 }
 

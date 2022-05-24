@@ -4,7 +4,9 @@ export const handlers = {
     onFieldClick: (path) => {},
     onMapClick: (key) => {},
     onImport: (e) => {},
+    onImportMap: (e) => {},
     onExport: (e) => {},
+    onExportMap: (e) => {},
     onPreview: (e) => {},
 }
 
@@ -14,7 +16,9 @@ const $new_key = $("#new-key");
 const $key_apply = $("#json-new-key");
 const $key_reset = $("#key-reset");
 const $import = $("#import");
+const $import_map = $("#import-map");
 const $export = $("#export");
+const $export_map = $("#export-map");
 const $preview = $("#preview");
 
 /* listens drag over $import */
@@ -43,10 +47,23 @@ $import.on('change', function(event) {
     };
     reader.readAsText(file);
 });
+$import_map.on('change', function(event) {
+    event.preventDefault();
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.onload = function(event) {
+        handlers.onImportMap(JSON.parse(event.target.result));
+    };
+    reader.readAsText(file);
+});
 
 $export.on('click', function(event) {
     event.preventDefault();
     handlers.onExport();
+});
+$export_map.on('click', function(event) {
+    event.preventDefault();
+    handlers.onExportMap();
 });
 
 $preview.on('click', function(event) {

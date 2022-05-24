@@ -26,9 +26,11 @@
             <div class="map-zone" id="map-zone"></div>
         </fieldset>
         <fieldset class="buttons-zone">
-            <label for="import" class="button" tabindex="0">Import</label>
+            <label for="import" class="button" tabindex="0">Import input</label>
+            <label for="import-map" class="button" tabindex="0">Import map</label>
             <input type="text" name="file-name" id="file-name" placeholder="File name" autocomplete="off">
-            <button type="button" class="button" id="export">Export</button>
+            <button type="button" class="button" id="export">Export output</button>
+            <button type="button" class="button" id="export-map">Export map</button>
             <button type="button" class="button" id="preview">Preview</button>
         </fieldset>
         <div class="preview">
@@ -48,6 +50,7 @@
     </footer>
     <div> <!-- hidden inputs -->
         <input type="file" id="import" accept=".json" hidden>
+        <input type="file" id="import-map" accept=".json" hidden>
     </div>
     <script src="./includes/jquery.slim.min.js"></script>
     <script src="./src/main.js" type="module"></script>

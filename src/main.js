@@ -21,9 +21,15 @@ handlers.onMapClick = (key) => {
 }
 handlers.onImport = (json) => {
     jsm = new JSonManager(json);
+    window.jsm = jsm;
     updateFields(jsm.getInputFields_HTML());
     updateMap(jsm.getMap_HTML());
     init();
+}
+handlers.onImportMap = (json) => {
+    if(!(jsm instanceof JSonManager)) return;
+    jsm.importMap(json);
+    updateMap(jsm.getMap_HTML());
 }
 handlers.onExport = () => {
     if(!jsm) return;
@@ -33,6 +39,18 @@ handlers.onExport = () => {
     const a = document.createElement("a");
     a.href = url;
     a.download = $("#file-name").val() || "export.json";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+};
+handlers.onExportMap = () => {
+    if(!jsm) return;
+    jsm.parseMap();
+    const blob = new Blob([jsm.exportMap()], {type: "application/json"});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = $("#file-name").val() || "map.json";
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
