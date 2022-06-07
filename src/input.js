@@ -87,7 +87,7 @@ export const init = () => {
         if($new_key.val() === "") {
             $new_key.val($selected.children(".jsfield__key").text());
         }
-        if($map.find(`[data-key="${$new_key.val()}"]`).length) {
+        if(!$new_key.val().endsWith("[]") && $map.find(`[data-key="${$new_key.val()}"]`).length) {
             $new_key.val("");
             return;
         }
