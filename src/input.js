@@ -1,3 +1,5 @@
+import csvToJson from "./csvToJson.js";
+
 export const handlers = {
     onKeyApply: (path, key) => {},
     onKeyReset: () => {},
@@ -33,7 +35,11 @@ $(`label[for="import"]`).on('drop', function(event) {
     const file = event.dataTransfer.files[0];
     const reader = new FileReader();
     reader.onload = function(event) {
-        handlers.onImport(JSON.parse(event.target.result));
+        if (file.type === 'application/json') {
+            handlers.onImport(JSON.parse(event.target.result));
+        } else if(file.type === 'text/csv') {
+            handlers.onImport(csvToJson(event.target.result));
+        }
     };
     reader.readAsText(file);
 });
@@ -43,7 +49,11 @@ $import.on('change', function(event) {
     const file = event.target.files[0];
     const reader = new FileReader();
     reader.onload = function(event) {
-        handlers.onImport(JSON.parse(event.target.result));
+        if (file.type === 'application/json') {
+            handlers.onImport(JSON.parse(event.target.result));
+        } else if(file.type === 'text/csv') {
+            handlers.onImport(csvToJson(event.target.result));
+        }
     };
     reader.readAsText(file);
 });
