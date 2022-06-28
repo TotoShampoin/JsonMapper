@@ -25,7 +25,13 @@ export default (csv) => {
         const obj = {};
         const currentline = data.data[i];
         for (let j = 0; j < header.length; j++) {
-            obj[header[j]] = currentline[j];
+            let row = currentline[j];
+            try {
+                row = JSON.parse(row);
+            } catch(e) {
+                // do nothing
+            }
+            obj[header[j]] = row;
         }
         result.push(obj);
     }
